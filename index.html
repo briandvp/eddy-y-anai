@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcelo & Priscila — Nos Casamos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f2f2f2;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 365px;
+      margin: 0 auto;
+      background: #f2f2f2;
+    }
+
+    .section-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    .section-img-link {
+      display: block;
+      line-height: 0;
+    }
+
+    /* Audio player */
+    .audio-section {
+      background: #f2f2f2;
+      padding: 0 24px 28px;
+    }
+
+    .audio-player {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .audio-player button {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .audio-player button svg {
+      width: 34px;
+      height: 34px;
+      fill: #5a6a5a;
+    }
+
+    .audio-track {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .audio-progress {
+      width: 100%;
+      height: 3px;
+      background: #d4ddd4;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .audio-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #6b8f6b;
+      border-radius: 2px;
+      transition: width 0.1s linear;
+    }
+
+    .audio-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #888;
+      font-family: sans-serif;
+    }
+
+    /* Countdown */
+    .countdown-section {
+      background: #1A3249;
+      padding: 0 20px 32px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+
+    .countdown-value {
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .countdown-label {
+      font-size: 13px;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        max-width: 420px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- Header -->
+    <img class="section-img" src="assets/img-0.png" alt="Marcelo & Priscila — Nos Casamos">
+
+    <!-- Reproductor de música -->
+    <div class="audio-section">
+      <div class="audio-player">
+        <button id="playBtn" aria-label="Reproducir música">
+          <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="audio-track">
+          <div class="audio-progress" id="progressBar">
+            <div class="audio-progress-fill" id="progressFill"></div>
+          </div>
+          <div class="audio-time">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+      </div>
+      <audio id="audio" src="assets/music.mp3" preload="metadata"></audio>
+    </div>
+
+    <!-- Foto principal -->
+    <!-- <img class="section-img" src="assets/img-1.png" alt="Marcelo y Priscila"> -->
+
+    <!-- Calendario Mayo -->
+    <img class="section-img" src="assets/img-2.png" alt="Calendario — Mayo 24">
+
+    <!-- Cuenta regresiva -->
+    <div class="countdown-section">
+      <div class="countdown-grid">
+        <div>
+          <div class="countdown-value" id="days">00</div>
+          <div class="countdown-label">Días</div>
+        </div>
+        <div>
+          <div class="countdown-value" id="hours">00</div>
+          <div class="countdown-label">Horas</div>
+        </div>
+        <div>
+          <div class="countdown-value" id="minutes">00</div>
+          <div class="countdown-label">Minutos</div>
+        </div>
+        <div>
+          <div class="countdown-value" id="seconds">00</div>
+          <div class="countdown-label">Segundos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foto pareja -->
+    <!-- <img class="section-img" src="assets/img-3.png" alt=""> -->
+
+    <!-- Timeline del evento -->
+    <img class="section-img" src="assets/img-4.png" alt="Recepción, Ceremonia, Boda">
+
+    <!-- Cita bíblica -->
+    <img class="section-img" src="assets/img-5.png" alt="El amor es paciente, el amor es bondadoso">
+
+    <!-- Ubicación -->
+    <a class="section-img-link" href="https://maps.app.goo.gl/VW1s14P6DL3zCMgz9" target="_blank" rel="noopener">
+      <img class="section-img" src="assets/img-6.png" alt="Salón Club Montegrande — Cómo llegar">
+    </a>
+
+    <!-- Dress Code -->
+    <img class="section-img" src="assets/img-7.png" alt="Dress Code — Elegante">
+
+    <!-- Foto otoño -->
+    <img class="section-img" src="assets/img-8.png" alt="">
+
+    <!-- Confirmación -->
+    <a class="section-img-link" href="https://docs.google.com/forms/d/e/1FAIpQLSekmcO1xP_faU67f5qJGK_XAjIoTFHXY-Jf-GhdcdGoHC8gUQ/viewform?usp=publish-editor" target="_blank" rel="noopener">
+      <img class="section-img" src="assets/img-9.png" alt="Confirmar asistencia">
+    </a>
+
+    <!-- Menú -->
+    <a class="section-img-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeHq9AIIhnYX5RAv3woYxsNeh3l0MLcG3V_7B7AxUGJ19S7zw/viewform" target="_blank" rel="noopener">
+      <img class="section-img" src="assets/img-10.png" alt="Menú">
+    </a>
+
+    <!-- Regalos -->
+    <!-- <img class="section-img" src="assets/img-11.png" alt="Regalos — Ver datos bancarios"> -->
+
+    <!-- Propuesta -->
+    <!-- <img class="section-img" src="assets/img-12.png" alt=""> -->
+
+    <!-- Subir fotos -->
+    <a class="section-img-link" href="https://photos.app.goo.gl/gWqiz1rbNPC7StEv9" target="_blank" rel="noopener">
+      <img class="section-img" src="assets/img-13.png" alt="Subir fotos de la fiesta">
+    </a>
+
+    <!-- Instagram -->
+    <!-- <img class="section-img" src="assets/img-14.png" alt="Instagram"> -->
+
+    <!-- Footer -->
+    <img class="section-img" src="assets/img-15.png" alt="">
+  </main>
+
+  <script>
+    const weddingDate = new Date('2026-12-19T11:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      const els = {
+        days: document.getElementById('days'),
+        hours: document.getElementById('hours'),
+        minutes: document.getElementById('minutes'),
+        seconds: document.getElementById('seconds'),
+      };
+
+      if (diff <= 0) {
+        Object.values(els).forEach(el => el.textContent = '00');
+        return;
+      }
+
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      els.days.textContent = String(d).padStart(2, '0');
+      els.hours.textContent = String(h).padStart(2, '0');
+      els.minutes.textContent = String(m).padStart(2, '0');
+      els.seconds.textContent = String(s).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return m + ':' + String(s).padStart(2, '0');
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const pct = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = pct + '%';
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    });
+
+    progressBar.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+
+    audio.addEventListener('ended', () => {
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
